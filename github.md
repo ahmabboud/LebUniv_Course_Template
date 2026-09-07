@@ -4,10 +4,10 @@ branch: main
 ## Last sync
 
 date: 2026-09-07
-status: upstream empty — no commits on `main` yet (tree endpoint returns 409).
+commit: `f9c7182` (`Initial course template`)
+status: pushed to `ahmabboud/LebUniv_Course_Template` on `main`.
 direction: this project is the SOURCE. The design system, runtime and worked
-example were authored here and have not yet been pushed. Nothing was imported
-from the repository, so there is no upstream commit to record.
+example were authored here and published as the initial repository contents.
 
 ### Updated in this project
 
@@ -36,5 +36,5 @@ from the repository, so there is no upstream commit to record.
   course material, not template code.
 - Asset links carry `?v=1.0.2`. Bump in all four HTML files and in `SHELL` in
   `sw.js` when `assets/` changes.
-- After the first push, replace this file's `## Last sync` with the real commit
-  sha so later syncs can diff against it.
+- The initial repository commit is recorded above so later syncs can diff
+  against it.
