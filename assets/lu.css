@@ -662,6 +662,18 @@ strong, .lu-strong { font-weight: 600; }
   font-size: var(--lu-t-caption); color: var(--lu-ink-2);
   margin-top: var(--lu-s2); display: block; text-wrap: pretty;
 }
+/* Without this the display:block above beats the UA [hidden] rule and every
+   unrevealed rationale still occupies space, making MCQ and poll slides
+   several times taller than the slide. */
+.lu-mcq__why[hidden] { display: none; }
+/* .lu-mcq__opt is a 44px/1fr grid. The rationale is the option's third child,
+   so without an explicit column it lands in the 44px key column on the next
+   implicit row and renders one word per line, ~460px tall instead of ~54px.
+   Every revealed rationale in every MCQ and poll was doing this. */
+.lu-mcq__why { grid-column: 2; }
+/* Restored poll selection: marks what the student picked, never asserts it
+   was right. Correctness is only shown on reveal. */
+.lu-mcq__opt[data-picked] { border-color: var(--lu-ink-2); background: var(--lu-paper-2); }
 .lu-mcq__why::before { content: "→ "; color: var(--lu-ink-3); }
 .lu-mcq__fb {
   font-size: var(--lu-t-small); padding: var(--lu-s4) var(--lu-s5);
@@ -677,6 +689,18 @@ strong, .lu-strong { font-weight: 600; }
 .lu-walk { display: flex; flex-direction: column; gap: var(--lu-s4); min-height: 0; flex: 1 1 auto; }
 .lu-walk__view { flex: 1 1 auto; min-height: 0; display: grid; place-items: center; }
 .lu-walk__view > * { width: 100%; }
+/* A .lu-board is width:100% + aspect-ratio, so inside a height-constrained
+   walkthrough it derives a height taller than the space available and overlaps
+   the caption bar. The stage is a fixed 1600x900 canvas, so a fixed height is
+   deterministic: keep the full width, drop the ratio, fit the space.
+   Do NOT set `display` on [data-walk-step] here. It beats the UA [hidden]
+   rule and every step renders stacked on top of the others. */
+.lu-walk__view > [data-walk-step][hidden] { display: none; }
+.lu-walk__view [data-walk-step] > .lu-board { width: 100%; aspect-ratio: auto; height: 400px; }
+/* .lu-svg sets height:auto and is declared after .lu-board__edges, so at equal
+   specificity it wins and the edge layer keeps its own height instead of the
+   board's. Two classes to outrank it. */
+.lu-board > .lu-board__edges { height: 100%; }
 .lu-walk__bar { display: flex; align-items: center; gap: var(--lu-s4); flex: none; }
 .lu-walk__dots { display: flex; gap: var(--lu-s2); flex: none; }
 .lu-walk__dot {
@@ -976,23 +1000,38 @@ body.lu-presenter .deck, body.lu-presenter .lu-hud, body.lu-presenter .lu-progre
    14. PRINT / HANDOUT
    -------------------------------------------------------------------------- */
 @page { size: 1600px 900px; margin: 0; }
+/* Handout pages carry the slide AND the instructor notes, so they need to be
+   taller than a slide. A named page is the only way to vary this per mode. */
+@page lu-handout-page { size: 1600px 1500px; margin: 0; }
 @media print {
   html, body { background: #fff !important; height: auto !important; overflow: visible !important; }
   .lu-hud, .lu-progress, .lu-overlay, .lu-toast, .lu-skip, .lu-pop { display: none !important; }
   .deck { position: static !important; inset: auto !important; overflow: visible !important; display: block !important; background: #fff !important; }
   .deck__stage { position: static !important; left: auto !important; top: auto !important; transform: none !important; width: 1600px !important; height: auto !important; }
+  /* height:auto and overflow:visible are the whole fix. On screen a slide is a
+     fixed 900px box that clips, which is a deliberate projection constraint.
+     On paper there is no reason to lose text: let the slide grow and let a
+     long one run onto a second sheet. Previously the printed handout silently
+     cut 237px off slide 2, because .lu-print-notes is a flex child of .slide
+     and took its space from the body. */
   .slide {
     position: relative !important; inset: auto !important;
-    display: flex !important; width: 1600px; height: 900px;
-    break-after: page; page-break-after: always; break-inside: avoid;
+    display: flex !important; width: 1600px;
+    height: auto !important; min-height: 900px;
+    overflow: visible !important;
+    break-after: page; page-break-after: always; break-inside: auto;
     border: 0 !important;
   }
+  body.lu-handout .slide { page: lu-handout-page; }
+  .slide__body { overflow: visible !important; }
+  .lu-print-notes { flex: none; }
   .slide:last-of-type { break-after: auto; page-break-after: auto; }
   .slide--night { background: var(--lu-night) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
   [data-build] { opacity: 1 !important; transform: none !important; visibility: visible !important; }
   .lu-reveal__panel { display: block !important; }
-  .lu-walk__view > [data-walk-step] { display: block !important; }
+  .lu-walk__view > [data-walk-step] { display: block !important; height: auto !important; }
+  .lu-walk__view [data-walk-step] > .lu-board { width: 100% !important; height: 400px !important; aspect-ratio: auto !important; }
   .lu-code pre { overflow: visible !important; }
   /* A wipe cannot print. Unclip both panes and set them side by side. */
   .lu-compare__seam, .lu-compare__range { display: none !important; }
