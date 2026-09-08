@@ -9,7 +9,7 @@ direction: this project is the SOURCE. Seven defects were found downstream in
 `ahmabboud/course_knowledge_representation` while building its Session 1 and
 are now fixed here, where they belong.
 
-### v1.1.0 — seven defects fixed in the shared assets
+### v1.1.0, seven defects fixed in the shared assets
 
 All were present in this repository from the initial commit, and all reproduced
 in `lectures/kr-session-03.html`, this repo's own reference lecture.
@@ -26,14 +26,14 @@ in `lectures/kr-session-03.html`, this repo's own reference lecture.
 
 ### Also in v1.1.0
 
-- **`scripts/audit-deck.js`** — a console audit that measures what static checks
+- **`scripts/audit-deck.js`**, a console audit that measures what static checks
   cannot: overflow clean and revealed, `[hidden]` that does not hide, grid
   escapes, sub-20px text, node collisions, stray edge endpoints. Every defect
   above would have been caught by it.
-- **`lu-deck.js` `auditOverflow()`** — warns in the console at load listing any
+- **`lu-deck.js` `auditOverflow()`**, warns in the console at load listing any
   slide whose content is being clipped, so it fails loudly for the author
   instead of silently for the student.
-- **`AGENTS.md` §2b, "Seven traps this system has already shipped"** — the trap
+- **`AGENTS.md` §2b, "Seven traps this system has already shipped"**, the trap
   table, plus the two measurement rules (scaled vs unscaled units, and clearing
   `lu:` localStorage before taking a baseline) that cost the most time.
 - **`AGENTS.md` accessibility section corrected.** It claimed study mode was the
@@ -66,7 +66,7 @@ in `lectures/kr-session-03.html`, this repo's own reference lecture.
 
 ## Notes
 
-- `uploads/LebUniv/` holds the source syllabi. Excluded from the intended push —
+- `uploads/LebUniv/` holds the source syllabi. Excluded from the intended push , 
   course material, not template code.
 - Asset links carry `?v=1.0.2`. Bump in all four HTML files and in `SHELL` in
   `sw.js` when `assets/` changes.

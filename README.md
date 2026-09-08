@@ -2,12 +2,12 @@
 
 Interactive, graphic-first HTML lectures for the Lebanese University. Static pages, no build step, deployable to GitHub Pages as-is.
 
-- **`index.html`** — course index, links every lecture.
-- **`design-system.html`** — the design system and a live gallery of all twelve interactive components. Start here.
-- **`lectures/kr-session-03.html`** — the worked example: Knowledge Representation, Session 3, 21 slides.
-- **`lectures/_template.html`** — copy this to start a new lecture.
-- **`AGENTS.md`** — the authoring brief. Read it before writing a lecture, whether you are a person or an agent.
-- **`PROMPT.md`** — the paste-ready brief for handing a new session to an agent, and the syllabus-field-to-slide mapping.
+- **`index.html`**, course index, links every lecture.
+- **`design-system.html`**, the design system and a live gallery of all twelve interactive components. Start here.
+- **`lectures/kr-session-03.html`**, the worked example: Knowledge Representation, Session 3, 21 slides.
+- **`lectures/_template.html`**, copy this to start a new lecture.
+- **`AGENTS.md`**, the authoring brief. Read it before writing a lecture, whether you are a person or an agent.
+- **`PROMPT.md`**, the paste-ready brief for handing a new session to an agent, and the syllabus-field-to-slide mapping.
 
 ## What a lecture gives you
 
