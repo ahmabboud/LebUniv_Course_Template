@@ -2,7 +2,7 @@
 
 You are writing an interactive teaching lecture as a **single static HTML file**. Read this whole file before you write anything. When it and your own instincts disagree, this file wins.
 
-**Before anything else:** if you are building for a course, read that course repo's `PROGRESS.md` and open-work file first (for Knowledge Representation: `REPLAN-STATE.md`). This repo's `assets/` (lu.css, lu-flow.js, lu-deck.js) is kept identical to the Knowledge Representation course copy; when you change one, change both. The DSCAI course copy is behind on purpose (no lu-flow, two poll fixes missing).
+**Before anything else:** if you are building for a course, read that course repo's `PROGRESS.md` and open-work file first (for Knowledge Representation: `REPLAN-STATE.md`). This repo's `assets/` (lu.css, lu-flow.js, lu-deck.js, lu-glossary.js) is kept identical to the Knowledge Representation course copy; when you change one, change both. The DSCAI course copy is behind on purpose (no lu-flow, two poll fixes missing).
 
 ---
 
@@ -173,6 +173,7 @@ Full live examples with markup: `design-system.html` §8. Graded components are 
 | Component | Class | Notes |
 |---|---|---|
 | Term popover | `.lu-term` on a `<button type="button">` | `data-term`, `data-kind`, and either `data-def="…"` or a nested `<template>` for rich content. Becomes an inline note in study mode. |
+| Automatic glossary | `assets/glossary.js` + `assets/lu-glossary.js`, both `defer`, **before** `lu-deck.js` | Every term in the course's `GLOSSARY.md` becomes a clickable definition at its first use on each slide, with no markup. Rebuild the data with `python3 scripts/build-glossary.py`; `python3 scripts/check-glossary.py` lists acronyms on slides still undefined. Opt out with `data-glossary="off"`. Link rules (never, once per deck, aliases) are at the top of `build-glossary.py`. |
 | Click to reveal | `.lu-reveal` > `.lu-reveal__btn` + `.lu-reveal__panel[hidden]` | Runtime wires `aria-expanded`/`aria-controls`. Forced open in study mode and in handouts. |
 | Multiple choice ⓖ | `.lu-mcq` | `data-answer="b"`, `data-label`, `data-fb-correct`, `data-fb-wrong`; each `.lu-mcq__opt` has `data-key` and a hidden `.lu-mcq__why`. |
 | Walkthrough | `.lu-walk` | Children `[data-walk-step]` with `data-caption` (HTML ok) and `data-caption-short`. Arrow keys when focused. |
