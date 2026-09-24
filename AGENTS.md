@@ -2,6 +2,8 @@
 
 You are writing an interactive teaching lecture as a **single static HTML file**. Read this whole file before you write anything. When it and your own instincts disagree, this file wins.
 
+**Before anything else:** if you are building for a course, read that course repo's `PROGRESS.md` and open-work file first (for Knowledge Representation: `REPLAN-STATE.md`). This repo's `assets/` (lu.css, lu-flow.js, lu-deck.js) is kept identical to the Knowledge Representation course copy; when you change one, change both. The DSCAI course copy is behind on purpose (no lu-flow, two poll fixes missing).
+
 ---
 
 ## 0. What this repository is
@@ -202,7 +204,8 @@ Do not restate the slide. If a note only repeats what is visible, delete it and 
 
 ## 7. Graphics: three routes, in order
 
-1. **CSS primitives** (`.lu-pipeline`, `.lu-layers`, `.lu-board`, `.lu-matrix`, `.lu-table`). Semantic, restyleable, highlightable by `data-state`. Try these first, every time.
+0. **Flow diagram** (`.lu-flow` + `assets/lu-flow.js`, design system v1.2, 2026-09-23). The default for anything with blocks and arrows, and for every step-animated explanation. Arrows name their blocks, so they cannot drift. Colour comes only from `kind` (`ours` blue, `reused` teal, `upper` plum, `individual` green, `literal`/`builtin` grey) and `state` (`inferred` amber, `impossible` red, `active` ring). The kinds name layers: our own material, material reused from elsewhere, the foundation layer under both. Never pick a colour for looks: if two blocks share a colour, they share a layer. Reference: `design-system.html` section 7. Do not hand-position new `.lu-board` diagrams.
+1. **CSS primitives** (`.lu-pipeline`, `.lu-layers`, `.lu-matrix`, `.lu-table`). Semantic, restyleable, highlightable by `data-state`. For structures without arrows.
 2. **Inline SVG using the kit classes** (`.lu-svg` with `.s-fill-red`, `.s-stroke`, `.s-hair`, `.s-label`, `.s-mono`). For genuinely geometric relationships. Never hardcode a hex value. Add `role="img"` + `<title>`, or `aria-hidden="true"` when a caption carries the meaning.
 3. **Image placeholder** (`.lu-figure__ph`). For anything photographic or captured. State the exact path (`assets/img/<slug>.png`), the size, and what must be visible in the shot.
 
