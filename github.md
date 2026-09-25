@@ -56,7 +56,8 @@ in `lectures/kr-session-03.html`, this repo's own reference lecture.
 |---|---|---|
 | `index.html` | `index.html` | authored here |
 | `design-system.html` | `design-system.html` | authored here |
-| `lectures/kr-session-03.html` | `lectures/kr-session-03.html` | `uploads/LebUniv/Knowledge Representation/syllabus-source.json` (session 3) |
+| `lectures/kr-session-03.html` | `lectures/kr-session-03.html` | copied from the Knowledge Representation course repo (generated there by `scripts/deckgen-s3/`), 2026-09-25; glossary script tag points at `kr-session-03-glossary.js` |
+| `lectures/kr-session-03-glossary.js`, `assets/img/s3-*.png` | same | copied with it from the course repo (`assets/glossary.js`, `assets/img/`) |
 | `lectures/_template.html` | `lectures/_template.html` | authored here |
 | `assets/lu.css` | `assets/lu.css` | authored here |
 | `assets/lu-deck.js` | `assets/lu-deck.js` | authored here |

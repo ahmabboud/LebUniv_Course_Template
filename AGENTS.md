@@ -28,6 +28,7 @@ scripts/
 lectures/
   _template.html               COPY THIS. Your starting point, always.
   kr-session-03.html           The worked example. Read it before writing your own.
+  kr-session-03-glossary.js    That course's glossary data, so the example's term links work here.
 ```
 
 No framework. No bundler. No npm. No CDN at runtime except the two webfonts. A lecture opened straight from the filesystem must work.
@@ -37,7 +38,7 @@ No framework. No bundler. No npm. No CDN at runtime except the two webfonts. A l
 ## 1. The workflow
 
 1. **Read `design-system.html`** in a browser. It has every component live, with the markup.
-2. **Read `lectures/kr-session-03.html`.** It is 21 slides and uses all nine layouts and all twelve components. Imitate its structure.
+2. **Read `lectures/kr-session-03.html`.** It is 48 slides, copied from the Knowledge Representation course (where `scripts/deckgen-s3/` generates it), and uses all nine layouts and a mix of visual types: step-by-step flow walks (`lu-flow`), set pictures in inline SVG, cards, tables, code, real screenshots and interactive checks. Imitate its structure, and vary the visuals the same way rather than defaulting to one type. It does not use click to reveal, progressive build, compare wipe or the query sandbox: see those live in `design-system.html`.
 3. **Copy `lectures/_template.html`** to `lectures/<course-slug>-session-NN.html`.
 4. Fill in `<title>`, the `<meta name="description">`, and the `<body data-*>` attributes.
 5. Write the slides. Delete template slides you do not need; never delete the deck frame (`.deck > .deck__stage > .slide`).
